@@ -14,6 +14,9 @@ void Init_rackc() {
 VALUE method_rackc_init(VALUE self,VALUE env){
   VALUE rack_arr;
   VALUE headers;
+  VALUE request_path;
+
+  request_path = rb_hash_aref(env, "REQUEST_PATH");
 
   rack_arr = rb_ary_new();
   headers = rb_hash_new();
@@ -22,7 +25,7 @@ VALUE method_rackc_init(VALUE self,VALUE env){
 
   rb_ary_push(rack_arr, INT2NUM(200)); //response code here
   rb_ary_push(rack_arr, headers); //header hash here
-  rb_ary_push(rack_arr, (VALUE *)rb_str_new2("Hello World!")); //body here
+  rb_ary_push(rack_arr, (VALUE *)rb_str_new2("Hello")); //body here
   
   return rack_arr;
 }
