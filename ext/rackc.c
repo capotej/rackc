@@ -4,14 +4,14 @@ VALUE rackc = Qnil;
 
 void Init_rackc();
 
-VALUE method_rackc_init(VALUE self);
+VALUE method_rackc_init(VALUE self, VALUE env);
 
 void Init_rackc() {
   rackc = rb_define_module("RackC");
-  rb_define_singleton_method(rackc, "init!", method_rackc_init, 0);
+  rb_define_singleton_method(rackc, "call", method_rackc_init, 1);
 }
 
-VALUE method_rackc_init(VALUE self){
+VALUE method_rackc_init(VALUE self,VALUE env){
   VALUE rack_arr;
   VALUE headers;
 
